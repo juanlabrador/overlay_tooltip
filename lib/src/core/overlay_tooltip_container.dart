@@ -24,34 +24,33 @@ abstract class OverlayTooltipScaffoldImpl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-        children: [
-          child,
-          StreamBuilder<OverlayTooltipModel?>(
-              stream: controller.widgetsPlayStream,
-              builder: (context, snapshot) {
-                return snapshot.data == null ||
-                        snapshot.data!.widgetKey.globalPaintBounds == null
-                    ? SizedBox.shrink()
-                    : Positioned.fill(
-                        child: Container(
-                        color: overlayColor ?? Colors.black.withOpacity(.5),
-                        child: TweenAnimationBuilder(
-                          key: ValueKey(snapshot.data!.displayIndex),
-                          duration: Duration(milliseconds: 500),
-                          tween: Tween<double>(begin: 0, end: 1),
-                          curve: Curves.decelerate,
-                          builder: (_, double val, child) => Opacity(
-                            opacity: val,
-                            child: _TooltipLayout(
-                              model: snapshot.data!,
-                              controller: controller,
-                            ),
+      children: [
+        child,
+        StreamBuilder<OverlayTooltipModel?>(
+            stream: controller.widgetsPlayStream,
+            builder: (context, snapshot) {
+              return snapshot.data == null ||
+                      snapshot.data!.widgetKey.globalPaintBounds == null
+                  ? SizedBox.shrink()
+                  : Container(
+                      color: overlayColor ?? Colors.black.withOpacity(.5),
+                      child: TweenAnimationBuilder(
+                        key: ValueKey(snapshot.data!.displayIndex),
+                        duration: Duration(milliseconds: 500),
+                        tween: Tween<double>(begin: 0, end: 1),
+                        curve: Curves.decelerate,
+                        builder: (_, double val, child) => Opacity(
+                          opacity: val,
+                          child: _TooltipLayout(
+                            model: snapshot.data!,
+                            controller: controller,
                           ),
                         ),
-                      ));
-              })
-        ],
-      );
+                      ),
+                    );
+            })
+      ],
+    );
   }
 }
 
