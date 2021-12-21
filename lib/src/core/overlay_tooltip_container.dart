@@ -24,9 +24,8 @@ abstract class OverlayTooltipScaffoldImpl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-        fit: StackFit.expand,
         children: [
-          Positioned.fill(child: child),
+          child,
           StreamBuilder<OverlayTooltipModel?>(
               stream: controller.widgetsPlayStream,
               builder: (context, snapshot) {
