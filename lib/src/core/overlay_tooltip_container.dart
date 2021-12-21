@@ -23,8 +23,7 @@ abstract class OverlayTooltipScaffoldImpl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Stack(
         fit: StackFit.expand,
         children: [
           Positioned.fill(child: child),
@@ -53,8 +52,7 @@ abstract class OverlayTooltipScaffoldImpl extends StatelessWidget {
                       ));
               })
         ],
-      ),
-    );
+      );
   }
 }
 
